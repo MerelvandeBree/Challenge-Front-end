@@ -16,6 +16,11 @@ var names = [
     {Name: 'Sarah-Louise', Good: 0, Wrong: 0}
 ];
 
+var correctAnswers;
+var wrongAnswer = ;
+
+
+
 var correctName;
 var answers = [];
 var progressbarId;
@@ -72,20 +77,42 @@ function options() {
 function registerAnswer(answer) {
 
     if (answer === correctName){
-        console.log('Correct answer');
+
+        for (i = 0; i < names.length; i++) {
+
+            if (names[i].Name === correctName) {
+
+                names[i].Good += 1;
+                names[i].Good += 1;
+
+                correctAnswers++;
+
+            }
+        }
 
         progressbarWidth = 100;
         clearInterval(progressbarId);
 
         load();
-    } else {
+    }
+    else if (answer === 'toSlow') {
+
+        alert('Not quick enough!')
+
+        progressbarWidth = 100;
+        clearInterval(progressbarId);
+
+        load();
+    }
+
+
+    else {
         console.log('Wrong answer');
         alert('Wrong answer');
 
         progressbarWidth = 100;
         clearInterval(progressbarId);
 
-        load();
     }
 
 }
@@ -125,7 +152,7 @@ function load() {
             if (progressbarWidth >= 100) {
                 clearInterval(progressbarId);
                 y = 0;
-                registerAnswer('')
+                registerAnswer('toSlow')
             } else {
                 progressbarWidth++;
                 elem.style.width = progressbarWidth + "%";
