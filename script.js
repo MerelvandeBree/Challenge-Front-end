@@ -16,11 +16,8 @@ var names = [
     {Name: 'Sarah-Louise', Good: 0, Wrong: 0}
 ];
 
-var correctAnswers;
-var wrongAnswer = ;
-
-
-
+var correctAnswers = 0;
+var wrongAnswers = 0;
 var correctName;
 var answers = [];
 var progressbarId;
@@ -35,7 +32,6 @@ function showName() {
 
     var name = document.getElementById('name');
     name.innerHTML = 'Welke afbeelding hoort bij de naam <b>' + correctName + '</b>?';
-    console.log(correctName);
 
 }
 
@@ -77,15 +73,15 @@ function options() {
 function registerAnswer(answer) {
 
     if (answer === correctName){
-
-        for (i = 0; i < names.length; i++) {
+        for (var i = 0; i < names.length; i++) {
 
             if (names[i].Name === correctName) {
 
                 names[i].Good += 1;
-                names[i].Good += 1;
+                correctAnswers += 1;
 
-                correctAnswers++;
+                console.log('goede antwoorden' + correctAnswers);
+                console.log('goed per naam' + names[i].Good);
 
             }
         }
@@ -96,25 +92,42 @@ function registerAnswer(answer) {
         load();
     }
     else if (answer === 'toSlow') {
+        for (var i = 0; i < names.length; i++) {
 
-        alert('Not quick enough!')
+            if (names[i].Name === correctName) {
 
-        progressbarWidth = 100;
-        clearInterval(progressbarId);
+                alert('Not quick enough!')
 
-        load();
+                wrongAnswers += 1;
+                names[i].Wrong += 1;
+
+                load();
+
+            }
+
+            progressbarWidth = 100;
+            clearInterval(progressbarId);
+
+            console.log(wrongAnswers);
+        }
     }
-
 
     else {
-        console.log('Wrong answer');
-        alert('Wrong answer');
+        for (var i = 0; i < names.length; i++) {
 
-        progressbarWidth = 100;
-        clearInterval(progressbarId);
+            if (names[i].Name === correctName) {
 
+                console.log('Wrong answer');
+                alert('Wrong answer');
+
+                wrongAnswers += 1;
+                names[i].Wrong += 1;
+
+            }
+
+            console.log(wrongAnswers);
+        }
     }
-
 }
 
 function shuffleArray(array) {
@@ -136,7 +149,8 @@ function shuffleArray(array) {
 
 function scoreBoard() {
 
-    var score = document.getElementById('score');
+    var score = document.getElementById('scoreboard');
+    score.innerHTML = 'Goede antwoorden: ' + correctAnswers + '<br>' + 'Foute antwoorden: ' + wrongAnswers;
 
 }
 
@@ -167,5 +181,6 @@ function load() {
 
     showName();
     options();
+    scoreBoard();
 
 }
