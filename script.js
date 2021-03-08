@@ -1,5 +1,3 @@
-// document.write('test');
-
 var names = [
     {Name: 'Adelle', Good: 0, Wrong: 0},
     {Name: 'Anneliek', Good: 0, Wrong: 0},
@@ -24,6 +22,28 @@ var progressbarId;
 var progressbarWidth = 1;
 
 load();
+switchClass();
+
+function switchClass() {
+
+    var switcher = document.getElementById('switcher');
+    var className = switcher.className;
+
+    switch (className) {
+        case 'hide':
+            switcher.innerHTML = 'class is hide';
+            break;
+        case 'show':
+            switcher.innerHTML = 'class is show';
+            break;
+        default:
+            switcher.innerHTML = '';
+    }
+}
+
+// function showClass() {
+//
+// }
 
 function showName() {
 
@@ -83,11 +103,11 @@ function registerAnswer(answer) {
                 console.log('goede antwoorden' + correctAnswers);
                 console.log('goed per naam' + names[i].Good);
 
+                progressbarWidth = 100;
+                clearInterval(progressbarId);
+
             }
         }
-
-        progressbarWidth = 100;
-        clearInterval(progressbarId);
 
         load();
     }
@@ -101,15 +121,15 @@ function registerAnswer(answer) {
                 wrongAnswers += 1;
                 names[i].Wrong += 1;
 
-                load();
+                progressbarWidth = 100;
+                clearInterval(progressbarId);
 
             }
 
-            progressbarWidth = 100;
-            clearInterval(progressbarId);
+            // console.log(wrongAnswers);
 
-            console.log(wrongAnswers);
         }
+        load();
     }
 
     else {
