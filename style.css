@@ -16,16 +16,29 @@
 
 .images {
     width: 100%;
+    border-radius: 5px;
+}
+
+.group-img {
+    width: 100%;
+    border-radius: 5px;
 }
 
 #myProgress {
     width: 100%;
     background-color: grey;
+    border-radius: 5px;
 }
 
 #myBar {
     width: 1%;
     height: 30px;
     background-color: #26ff00;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.bottom {
+    margin-top: 20px;
 }
 

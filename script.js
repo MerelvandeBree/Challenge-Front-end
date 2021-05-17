@@ -22,28 +22,18 @@ var progressbarId;
 var progressbarWidth = 1;
 
 load();
-switchClass();
 
-function switchClass() {
+function settings() {
 
-    var switcher = document.getElementById('switcher');
-    var className = switcher.className;
+    var title = document.createElement('h2')
+    title.innerHTML = 'Settings';
 
-    switch (className) {
-        case 'hide':
-            switcher.innerHTML = 'class is hide';
-            break;
-        case 'show':
-            switcher.innerHTML = 'class is show';
-            break;
-        default:
-            switcher.innerHTML = '';
-    }
+
+    // aantal afbeeldingen
+
+    // lengte tijd
+
 }
-
-// function showClass() {
-//
-// }
 
 function showName() {
 
@@ -202,5 +192,11 @@ function load() {
     showName();
     options();
     scoreBoard();
+
+    var btn = document.getElementById('settings');
+    btn.innerHTML = 'Settings';
+    btn.onclick = function () {
+        settings();
+    }
 
 }
