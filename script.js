@@ -23,10 +23,42 @@ var progressbarWidth = 1;
 
 load();
 
+function switchClass() {
+
+    var trainerClass = document.getElementById("trainer");
+    var settingsClass = document.getElementById("settings");
+
+    if ( $('div.trainer').hasClass('active') ) {
+
+        trainerClass.classList.remove("active");
+        trainerClass.classList.add("inactive");
+
+        console.log('train active to inactive');
+
+
+        settingsClass.classList.remove("inactive");
+        settingsClass.classList.add("active");
+
+        console.log('settings inactive to active');
+    }
+    else if ( $('div.trainer').hasClass('inactive') ) {
+
+        trainerClass.classList.remove("inactive");
+        trainerClass.classList.add("active");
+
+        console.log('train inactive to active');
+
+        settingsClass.classList.remove("active");
+        settingsClass.classList.add("inactive");
+
+        console.log('settings active to inactive');
+    }
+
+}
+
 function settings() {
 
-    var title = document.createElement('h2')
-    title.innerHTML = 'Settings';
+
 
 
     // aantal afbeeldingen
@@ -192,11 +224,5 @@ function load() {
     showName();
     options();
     scoreBoard();
-
-    var btn = document.getElementById('settings');
-    btn.innerHTML = 'Settings';
-    btn.onclick = function () {
-        settings();
-    }
 
 }

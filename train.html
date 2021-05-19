@@ -15,18 +15,31 @@
 <body>
 <div class="container">
 
-    <h1 class="title list-group-item-info">Smoelentrainer</h1>
+    <div class="trainer active" id="trainer">
 
-    <div id="name" class="name col"></div>
-    <div id="answers" class="answers col"></div>
+        <h1 class="title list-group-item-info">Smoelentrainer</h1>
 
-    <div id="myProgress">
-        <div id="myBar"></div>
+        <div id="name" class="name col"></div>
+        <div id="answers" class="answers col"></div>
+
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+
+        <div class="bottom row">
+            <div id="scoreboard" class="col"></div>
+            <button id="settingsButton" class="btn btn-outline-secondary" onclick="switchClass()">Instellingen</button>
+        </div>
+
     </div>
+    <div class="settings inactive" id="settings">
 
-    <div class="bottom row">
-        <div id="scoreboard" class="col"></div>
-        <button id="settings" class="btn btn-outline-secondary"></button>
+        <h1 class="title list-group-item-info">Instellingen</h1>
+
+        <div class="bottom row">
+            <button class="btn btn-outline-secondary" onclick="switchClass()">Terug</button>
+        </div>
+
     </div>
 
 </div>
