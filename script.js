@@ -53,8 +53,6 @@ function switchClass() {
 
         clearInterval(progressbarId);
 
-        // Tijd stopzetten zodat punten niet doortellen en popup niet in beeld komt
-
     }
     else if ( $('div.trainer').hasClass('inactive') ) {
 
@@ -67,7 +65,6 @@ function switchClass() {
         load();
 
     }
-
 
 }
 
@@ -152,7 +149,7 @@ function registerAnswer(answer) {
 
         load();
     }
-    else if (answer === 'toSlow') {
+    else if (answer === 'timeout') {
         for (var i = 0; i < names.length; i++) {
 
             if (names[i].Name === correctName) {
@@ -166,10 +163,8 @@ function registerAnswer(answer) {
                 clearInterval(progressbarId);
 
             }
-
-            // console.log(wrongAnswers);
-
         }
+
         load();
     }
 
@@ -184,10 +179,15 @@ function registerAnswer(answer) {
                 wrongAnswers += 1;
                 names[i].Wrong += 1;
 
+                progressbarWidth = 100;
+                clearInterval(progressbarId);
+
+
             }
 
             console.log(wrongAnswers);
         }
+        load();
     }
 }
 
@@ -239,18 +239,10 @@ function load() {
             }
         }
 
-        // document.getElementById('name').innerHTML = '';
-        // document.getElementById('answers').innerHTML = '';
-        // document.getElementById('scoreboard').innerHTML = '';
-        answers = [];
-
-        showName();
-        options();
     }
 
     document.getElementById('name').innerHTML = '';
     document.getElementById('answers').innerHTML = '';
-    // document.getElementById('scoreboard').innerHTML = '';
     answers = [];
 
     showName();
