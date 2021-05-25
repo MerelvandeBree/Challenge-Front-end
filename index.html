@@ -15,18 +15,53 @@
 <body>
 <div class="container">
 
-<h1 class="title list-group-item-info">Smoelentrainer</h1>
+    <div class="home active" id="home">
 
-    <div id="switcher">
-        <div id="groupImage">
-            <img src="Img/nijntje.jpg" class="group-img">
+        <h1 class="title list-group-item-info">Smoelentrainer</h1>
+
+        <div id="switcher">
+            <div id="groupImage">
+                <img src="Img/nijntje.jpg" class="group-img">
+            </div>
+
+            <div class="bottom">
+                <!--                <a href="train.html" class="btn btn-outline-secondary">Trainer</a>-->
+                <button id="startButton" class="btn btn-outline-secondary" onclick="switchClass()">Start</button>
+            </div>
         </div>
 
-        <div class="bottom">
-            <a href="train.html" class="btn btn-outline-secondary">Trainer</a>
-        </div>
     </div>
 
+    <div class="trainer inactive" id="trainer">
+
+        <h1 class="title list-group-item-info">Smoelentrainer</h1>
+
+        <div id="name" class="name col"></div>
+        <div id="answers" class="answers col"></div>
+
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+
+        <div class="bottom row">
+            <div id="scoreboard" class="col"></div>
+            <button id="settingsButton" class="btn btn-outline-secondary" onclick="switchClass()">Instellingen</button>
+        </div>
+
+    </div>
+
+    <div class="settings inactive" id="settings">
+
+        <h1 class="title list-group-item-info">Instellingen</h1>
+
+        <input type="text" name="time" id="time">
+
+        <div class="bottom row">
+            <button class="btn btn-outline-secondary" onclick="switchClass()">Terug</button>
+            <button class="btn btn-outline-secondary" onclick="settings()" id="startBtn">Start</button>
+        </div>
+
+    </div>
 
 </div>
 
@@ -42,5 +77,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="script.js"></script>
 
 </html>

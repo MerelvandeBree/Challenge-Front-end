@@ -14,6 +14,8 @@ var names = [
     {Name: 'Sarah-Louise', Good: 0, Wrong: 0}
 ];
 
+localStorage.setItem('seconds', 10);
+
 var correctAnswers = 0;
 var wrongAnswers = 0;
 var correctName;
@@ -21,49 +23,66 @@ var answers = [];
 var progressbarId;
 var progressbarWidth = 1;
 
-load();
+
+const timeAmountInput = document.getElementById('time');
+
 
 function switchClass() {
 
+    var homeClass = document.getElementById("home")
     var trainerClass = document.getElementById("trainer");
     var settingsClass = document.getElementById("settings");
 
-    if ( $('div.trainer').hasClass('active') ) {
+    if ( $('div.home').hasClass('active') ) {
+        homeClass.classList.remove("active");
+        homeClass.classList.add("inactive");
+
+        trainerClass.classList.remove("inactive");
+        trainerClass.classList.add("active");
+
+        load();
+
+    }
+    else if ( $('div.trainer').hasClass('active') ) {
 
         trainerClass.classList.remove("active");
         trainerClass.classList.add("inactive");
 
-        console.log('train active to inactive');
-
-
         settingsClass.classList.remove("inactive");
         settingsClass.classList.add("active");
 
-        console.log('settings inactive to active');
+        clearInterval(progressbarId);
+
+        // Tijd stopzetten zodat punten niet doortellen en popup niet in beeld komt
+
     }
     else if ( $('div.trainer').hasClass('inactive') ) {
 
         trainerClass.classList.remove("inactive");
         trainerClass.classList.add("active");
 
-        console.log('train inactive to active');
-
         settingsClass.classList.remove("active");
         settingsClass.classList.add("inactive");
 
-        console.log('settings active to inactive');
+        load();
+
     }
+
 
 }
 
 function settings() {
 
+    var startTraining = document.getElementById('startBtn');
+    startTraining.onclick = function () {
+        if (timeAmountInput.value !== '') {
+            localStorage.setItem('seconds', timeAmountInput.value);
+        } else {
+            localStorage.setItem('seconds', localStorage.getItem('seconds'));
+        }
 
-
-
-    // aantal afbeeldingen
-
-    // lengte tijd
+        switchClass();
+    }
 
 }
 
@@ -198,22 +217,35 @@ function scoreBoard() {
 
 function load() {
 
-    var y = 0;
-    if (y === 0) {
-        y = 1;
-        var elem = document.getElementById("myBar");
-        progressbarWidth = 1;
-        progressbarId = setInterval(frame, 100);
-        function frame() {
-            if (progressbarWidth >= 100) {
-                clearInterval(progressbarId);
-                y = 0;
-                registerAnswer('toSlow')
-            } else {
-                progressbarWidth++;
-                elem.style.width = progressbarWidth + "%";
+    let checker = arr => arr.every(v => v.Good === 1);
+
+    if (checker(names) === false) {
+        var y = 0;
+        if (y === 0) {
+            y = 1;
+            const elem = document.getElementById("myBar");
+            progressbarWidth = 1;
+            progressbarId = setInterval(frame, localStorage.getItem('seconds') * 10);
+
+            function frame() {
+                if (progressbarWidth >= 100) {
+                    clearInterval(progressbarId);
+                    y = 0;
+                    registerAnswer('timeout');
+                } else {
+                    progressbarWidth++;
+                    elem.style.width = progressbarWidth + "%";
+                }
             }
         }
+
+        // document.getElementById('name').innerHTML = '';
+        // document.getElementById('answers').innerHTML = '';
+        // document.getElementById('scoreboard').innerHTML = '';
+        answers = [];
+
+        showName();
+        options();
     }
 
     document.getElementById('name').innerHTML = '';
