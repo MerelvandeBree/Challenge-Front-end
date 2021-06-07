@@ -184,9 +184,8 @@ function registerAnswer(answer) {
 
 
             }
-
-            console.log(wrongAnswers);
         }
+
         load();
     }
 }
